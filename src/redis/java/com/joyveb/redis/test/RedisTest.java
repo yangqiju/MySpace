@@ -1,5 +1,6 @@
 package com.joyveb.redis.test;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -37,7 +38,7 @@ public class RedisTest {
 		poolConfig.setMinIdle(10);
 		poolConfig.setTestOnBorrow(true);
 		JedisConnectionFactory redisDataSource = new JedisConnectionFactory();
-		redisDataSource.setHostName("127.0.0.1");
+		redisDataSource.setHostName("192.168.3.146");
 		redisDataSource.setPort(6379);
 		redisDataSource.setTimeout(60000);
 		redisDataSource.setPoolConfig(poolConfig);
@@ -57,8 +58,26 @@ public class RedisTest {
 	public void test() {
 		Map<String, ParaDrawnumber> map = dao.getAllPeriod();
 		for (Entry<String, ParaDrawnumber> entry : map.entrySet()) {
-			System.out.println(entry.getValue().getEdrawnumber());
+			System.out.println(entry.getValue().getEdrawnumber()+":"+entry.getValue().getProcessstatus());
+//			if("2013001".equals(entry.getKey())){
+//				ParaDrawnumber p = entry.getValue();
+//				p.setProcessstatus(-91001);
+//				dao.addPeriod(p);
+//			}
 		}
+	}
+	
+	@Test
+	public void insert(){
+		ParaDrawnumber period = new ParaDrawnumber();
+		period.setEdrawnumber(new BigDecimal("2013001"));
+		period.setProcessstatus(2222);
+		dao.addPeriod(period);
+	}
+	
+	@Test
+	public void delete(){
+		dao.cleanEndPeriod(new BigDecimal("2013002"));
 	}
 
 }

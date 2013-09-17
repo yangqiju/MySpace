@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+	
+	<!-- 磁盘存储配置：用来指定缓存在磁盘上的存储位置(如果不是绝对路径会在生成$glassfish_domain_home/config/ehcache/) -->
+	<diskStore path="ehcache" />
+	
+	<defaultCache eternal="false" maxElementsInMemory="100000"
+		overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="0"
+		timeToLiveSeconds="3600" diskSpoolBufferSizeMB="1" diskExpiryThreadIntervalSeconds="60"
+		memoryStoreEvictionPolicy="LRU" />
+
+	<!--name： 缓存名称
+			eternal：缓存元素是否永久有效
+			maxElementsInMemory：内存中最大缓存元素条数
+			overflowToDisk：当内存中缓存达到 maxInMemory限制时元素是否可写到磁盘
+			diskPersistent：磁盘存储是否在虚拟机重启后持续存在
+			timeToIdleSeconds：缓存元素在过期前的空闲时间。默认为0，表示可空闲无限时间
+			timeToLiveSeconds：缓存元素的有效生命期。这个类似于timeouts
+			diskSpoolBufferSizeMB：设置diskStore（磁盘缓存）的缓存区大小。默认是30MB。
+			diskExpiryThreadIntervalSeconds：缓存元素失效监测以及清除线程运行间隔时间
+			memoryStoreEvictionPolicy：当内存缓存达到最大，有新的元素加入的时候，  移除缓存中element的策略
+			-->
+	<cache name="USER_CACHE" eternal="false" maxElementsInMemory="2000"
+		overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="0"
+		timeToLiveSeconds="100" diskSpoolBufferSizeMB="1" diskExpiryThreadIntervalSeconds="60"  
+		memoryStoreEvictionPolicy="LRU" />
+
+</ehcache>  

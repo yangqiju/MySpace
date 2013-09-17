@@ -39,13 +39,14 @@ public class RedisDao {
 		@SuppressWarnings("unchecked")
 		final RedisSerializer<ParaDrawnumber> sv = (RedisSerializer<ParaDrawnumber>) this.redisTemp
 				.getValueSerializer();
-		final Map<byte[], byte[]> map = new HashMap<byte[], byte[]>();
+//		final Map<byte[], byte[]> map = new HashMap<byte[], byte[]>();
 		this.redisTemp.execute(new RedisCallback<Boolean>() {
 			public Boolean doInRedis(RedisConnection connection)
 					throws DataAccessException {
-				map.putAll(connection.hGetAll(redisKey));
-				map.put(mapkey_, sv.serialize(period));
-				connection.hMSet(redisKey, map);
+//				map.putAll(connection.hGetAll(redisKey));
+//				map.put(mapkey_, sv.serialize(period));
+//				connection.hMSet(redisKey, map);
+				connection.hSet(redisKey, mapkey_, sv.serialize(period));
 				return true;
 			}
 		});
