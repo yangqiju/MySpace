@@ -31,5 +31,6 @@ public class CacheTest {
 		user.setName("firstuser");
 		userCache.putObject("id1", user);
 		System.out.println(userCache.getObject("id1").getName());
+		userCache.printConfig();
 	}
 }

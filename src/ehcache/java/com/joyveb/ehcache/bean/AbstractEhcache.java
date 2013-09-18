@@ -6,6 +6,7 @@ import javax.annotation.PreDestroy;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
+import net.sf.ehcache.config.CacheConfiguration;
 
 public class AbstractEhcache<K> {
 
@@ -18,6 +19,14 @@ public class AbstractEhcache<K> {
 		cache = cm.getCache(cachename);
 	}
 	
+	public void printConfig(){
+		System.out.println("--------------config start--------------------");
+		CacheConfiguration config = cache.getCacheConfiguration();
+//		cache.disableDynamicFeatures();//disable 
+		System.out.println("timeToLiveSeconds:"+config.getTimeToLiveSeconds());
+		System.out.println("timeToidleSeconds:"+config.getTimeToIdleSeconds());
+		System.out.println("--------------config end--------------------");
+	}
 	/**
 	 * Get an object from a cache model
 	 * 
