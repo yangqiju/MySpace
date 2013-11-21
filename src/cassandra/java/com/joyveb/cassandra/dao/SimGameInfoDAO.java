@@ -2,6 +2,7 @@ package com.joyveb.cassandra.dao;
 
 import java.util.List;
 
+
 public interface SimGameInfoDAO extends BaseCassandraDao<String, SimGameInfo>{
 
     /**

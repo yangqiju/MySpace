@@ -16,8 +16,8 @@ import java.util.concurrent.Future;
 public class ch6_2_AIO {
 
 	public static void main(String[] args) {
-//		 server2();
-		client1();
+		 server2();
+//		client1();
 	}
 
 	public static void server1() {

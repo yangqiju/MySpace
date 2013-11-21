@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -25,11 +26,14 @@ import me.prettyprint.hector.api.Cluster;
 import me.prettyprint.hector.api.HConsistencyLevel;
 import me.prettyprint.hector.api.Keyspace;
 import me.prettyprint.hector.api.Serializer;
+import me.prettyprint.hector.api.beans.HSuperColumn;
 import me.prettyprint.hector.api.beans.OrderedRows;
 import me.prettyprint.hector.api.beans.Row;
 import me.prettyprint.hector.api.factory.HFactory;
+import me.prettyprint.hector.api.mutation.Mutator;
 import me.prettyprint.hector.api.query.QueryResult;
 import me.prettyprint.hector.api.query.RangeSlicesQuery;
+import me.prettyprint.hector.api.query.SuperColumnQuery;
 import me.prettyprint.hom.HectorObjectMapper;
 
 import org.apache.commons.lang3.StringUtils;
@@ -62,10 +66,10 @@ public class CassDAOTest {
 
 	public static void main(String[] args) {
 		init();
-//		queryColumns();
+		queryColumns();
 //		queryByexample();
 //		selectByCql();
-		findByPages();
+//		findByPages();
 	}
 
 	
@@ -236,10 +240,21 @@ public class CassDAOTest {
 		return HectorObjectMapper.determineSerializer(field.getType())
 				.fromBytes(bytes);
 	}
+	
+	private static void inserSuperColumn(){
+		Mutator<String> mutator = HFactory.createMutator(keyspace, stringSerializer);
+		mutator.insert("billing", "Super1", HFactory.createSuperColumn("jsmith",Arrays.asList(HFactory.createStringColumn("first", "John")),stringSerializer, stringSerializer, stringSerializer));
+	}
+	
+	private static void selectSuperColumn(){
+		SuperColumnQuery<String, String, String, String> superColumnQuery =HFactory.createSuperColumnQuery(keyspace, stringSerializer,stringSerializer, stringSerializer, stringSerializer);
+		superColumnQuery.setColumnFamily("Super1").setKey("billing").setSuperName("jsmith");
+		QueryResult<HSuperColumn<String, String, String>> result = superColumnQuery.execute();
+	}
 
 	private static void init() {
 //		String hosts = "192.168.3.141:9160,192.168.3.142:9160,192.168.3.143:9160,192.168.3.144:9160";
-		String hosts = "192.168.3.143:9160";
+		String hosts = "192.168.3.141:9160";
 		CassandraHostConfigurator chc = new CassandraHostConfigurator(hosts);
 		Cluster cluster = new ThriftCluster("Test Cluster", chc);
 		ConfigurableConsistencyLevel level = new ConfigurableConsistencyLevel();

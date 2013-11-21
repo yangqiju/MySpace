@@ -12,45 +12,6 @@
 
 	<context:annotation-config />
 	<context:component-scan base-package="com.joyveb" />
-	<!-- 
-	<context:property-placeholder location="classpath:datasource.properties" />
-	<bean id="ehCacheManager"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache.xml" />
-	</bean>-->
-	 
-	<!-- Oracle DataSource configuration 
-	<bean id="dataSourceFront" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass" value="${jdbc.driver}" />
-		<property name="jdbcUrl" value="${jdbc.url}" />
-		<property name="user" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-	</bean>
-	<bean id="dataSourceFront" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-		destroy-method="close">
-		<property name="driverClass" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.3.21:1521:lottery" />
-		<property name="user" value="limingjian" />
-		<property name="password" value="limingjian456" />
-	</bean>
--->
-	<!--<bean id="dataSourceFront" class="org.springframework.jndi.JndiObjectFactoryBean"> 
-		<property name="jndiName" value="jndi/front"></property> </bean> 
-	<bean id="sqlMapClientFront" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="classpath:cache-sql-map-config.xml" />
-		<property name="dataSource" ref="dataSourceFront" />
-	</bean>
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSourceFront" />
-	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<bean id="baseDao" abstract="true">
-		<property name="sqlMapClient" ref="sqlMapClientFront" />
-	</bean>
--->
 			
 	<bean id="userCache" class="com.joyveb.ehcache.bean.UserCache" />	
 </beans>
