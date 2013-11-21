@@ -1,0 +1,86 @@
+BO
+messageid 	消息编号
+ltype		游戏
+merchantid	商户编号
+period		期号
+status 		状态
+createdate	创建时间
+
+RO
+原票号		ORDERNO
+原消息序列号	MESSAGEID
+商户编号		MERCHANTID
+期号			PERIOD
+投注数据		CONTENT
+票金额		AMOUNT
+状态(1，2，3)	STATUS
+创建时间	CREATEDATE
+投注号码（多注以逗号分隔）	WAGERDATA
+投注金额（单位分）	TOTALAMOUNT
+
+Name	Code
+票号	CASKEY
+商户编号	MERCHANTID
+期号	PERIOD
+投注数据	CONTENT
+票金额	AMOUNT
+原消息序列号	MESSAGEID
+原票号	ORDERNO
+落地返回响应	REGIONCODE
+投注号码	WAGERDATA
+
+CF
+原消息序列号	MESSAGEID
+原票号		ORDERNO
+拆单后的票号	CASKEY
+商户编号		MERCHANTID
+期号			PERIOD
+投注数据		CONTENT
+票金额		AMOUNT
+状态(1,2)	STATUS
+创建时间		CREATEDATE
+投注号码		WAGERDATA
+投注金额		TOTALAMOUNT
+落地返回响应	REGIONCODE
+
+
+CREATE KEYSPACE mykeyspace2
+           WITH replication = {'class': 'NetworkTopologyStrategy', 'DC1' : 1, 'DC2' : 1}
+            AND durable_writes = true;
+
+CREATE TABLE users (
+  userid text,
+  fname text,
+  age int,
+  lname text,
+  PRIMARY KEY (userid)
+) ;
+
+CREATE TABLE ticket3 (
+messageid text,
+orderno text,
+caskey text,
+merchantid text,
+period bigint,
+ltype text,
+content text,
+amount bigint,
+status int,
+createdate timestamp,
+wagerdata text,
+totalamount bigint,
+regioncode text,
+PRIMARY KEY(caskey,orderno,messageid)
+);
+
+INSERT INTO ticket3(messageid,merchantid,period,ltype,status,createdate,orderno,caskey) VALUES('messageid1','merchantid1',2012001,'3D',1,1368438171000,'ISNULL','ISNULL');
+
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount)VALUES('messageid1','orderno1','ISNULL','merchantid1',2012001,'3D','1|2|3',50,1,1368438171000,'1|2|3-1',10);
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount)VALUES('messageid1','orderno2','ISNULL','merchantid1',2012001,'3D','4|5|6',50,1,1368438171000,'4|5|6-1',10);
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount)VALUES('messageid1','orderno3','ISNULL','merchantid1',2012001,'3D','7|8|9',50,1,1368438171000,'7|8|9-1',10);
+
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount,regioncode) VALUES('messageid1','orderno1','caskey1','merchantid1',2012001,'3D','1|2|3',50,2,1368438171000,'1|2|3-1',10,'regincode');
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount,regioncode) VALUES('messageid1','orderno1','caskey2','merchantid1',2012001,'3D','1|2|3',50,2,1368438171000,'1|2|3-2',10,'regincode');
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount,regioncode) VALUES('messageid1','orderno1','caskey3','merchantid1',2012001,'3D','1|2|3',50,2,1368438171000,'1|2|3-3',10,'regincode');
+INSERT INTO ticket3(messageid,orderno,caskey,merchantid,period,ltype,content,amount,status,createdate,wagerdata,totalamount,regioncode) VALUES('messageid1','orderno1','caskey4','merchantid1',2012001,'3D','1|2|3',50,2,1368438171000,'1|2|3-4',10,'regincode');
+
