@@ -1,7 +1,7 @@
 package com.joyveb.deque.test;
 
+import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * 
@@ -16,23 +16,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class DequeFirstTest {
 
 	public static void main(String[] args) {
-		LinkedBlockingDeque<String> deque = new LinkedBlockingDeque<String>();
-//		String str = "";
-//		deque.offer("a");
-//		deque.add("a");
-//		deque.addFirst("first");
-//		deque.addLast("last");
-//		deque.size();
-//		str = deque.poll();
-//		String str = deque.getLast();
-//		String str = deque.element();//不删除
-//		String str = deque.peek();
-//		str = deque.peek();
-//		str = deque.pop();
-//		System.out.println(str);
-//		System.out.println("end");
-		LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<String>();
-		queue.poll();
-		System.out.println("end");
+		LinkedBlockingDeque<PeriodBean> deque = new LinkedBlockingDeque<PeriodBean>();
+		Iterator<PeriodBean> iter = deque.iterator();
+//		iter.
+		
 	}
 }

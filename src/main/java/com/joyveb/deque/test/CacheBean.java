@@ -16,5 +16,5 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class CacheBean {
 
-	public static Map<String, LinkedBlockingDeque<PeriodBean>> ENCASH_DEQUE = new ConcurrentHashMap<String, LinkedBlockingDeque<PeriodBean>>();
+	public static  LinkedBlockingDeque<PeriodBean> ENCASH_DEQUE = new LinkedBlockingDeque<PeriodBean>();
 }
