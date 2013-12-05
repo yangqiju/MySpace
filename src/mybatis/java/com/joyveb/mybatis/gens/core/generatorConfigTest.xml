@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+ "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+ "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="X:\m2_repos\com\oracle\ojdbc14\10.2.0.1.0\ojdbc14-10.2.0.1.0.jar"/>
+	<context id="simple-annotated" targetRuntime="MyBatis3" defaultModelType="hierarchical">
+		<!-- 
+		<plugin type="com.joyveb.mybatis.gens.core.FindByPagePlugin"/>
+		<plugin type="com.joyveb.mybatis.gens.core.PaginationPlugin"/>
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" /> 
+		-->
+		<plugin type="com.joyveb.mybatis.gens.core.OracelPaginationPlugin"/>
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+    	
+    	<commentGenerator>
+	      <property name="suppressDate" value="true"/>
+	    </commentGenerator>
+    
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@192.168.3.21:1521:lottery" userId="lottery_tj"
+			password="lottery_tj" />
+
+		<javaModelGenerator targetPackage="com.joyveb.gens.jpa.model"
+			targetProject="src/gens/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		
+		<sqlMapGenerator targetPackage="com.joyveb.gens.jpa.mapper"  
+			targetProject="src/gens/java">
+			<property name="enableSubPackages" value="true" />
+	    </sqlMapGenerator>
+    
+		<!-- <javaClientGenerator type="ANNOTATEDMAPPER"
+			targetPackage="com.joyveb.gens.jpa.mapper"
+			targetProject="src/gens/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator> -->
+		
+		<!-- <javaClientGenerator type="XMLMAPPER" targetPackage="com.joyveb.gens.jpa.mapper"  targetProject="src/gens/java">
+	      <property name="enableSubPackages" value="true" />
+	    </javaClientGenerator>  -->
+	    
+	    <javaClientGenerator type="MIXEDMAPPER" targetPackage="com.joyveb.gens.jpa.mapper"  targetProject="src/gens/java">
+	      <property name="enableSubPackages" value="true" />
+	    </javaClientGenerator> 
+
+		<table tableName="t_para_properties" domainObjectName="ParaProperties"/>
+	</context>
+</generatorConfiguration>

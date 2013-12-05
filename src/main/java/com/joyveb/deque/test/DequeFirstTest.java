@@ -1,7 +1,7 @@
 package com.joyveb.deque.test;
 
-import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 
@@ -17,8 +17,14 @@ public class DequeFirstTest {
 
 	public static void main(String[] args) {
 		LinkedBlockingDeque<PeriodBean> deque = new LinkedBlockingDeque<PeriodBean>();
-		Iterator<PeriodBean> iter = deque.iterator();
-//		iter.
-		
+		System.out.println(System.currentTimeMillis());
+		try {
+			PeriodBean pb = deque.poll(10, TimeUnit.SECONDS);
+			deque.push(pb);
+			deque.put(pb);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.out.println(System.currentTimeMillis());
 	}
 }

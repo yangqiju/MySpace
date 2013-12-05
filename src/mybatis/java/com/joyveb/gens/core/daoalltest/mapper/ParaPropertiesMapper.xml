@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joyveb.gens.core.daoalltest.mapper.ParaPropertiesMapper">
+	<select id="selectAllByXml" resultType="ParaProperties">
+		select * from
+		t_para_properties
+	</select>
+	<select id="selectByKey" parameterType="string"
+		resultType="com.joyveb.gens.core.daoalltest.ParaProperties">
+		select * from t_para_properties where key = #{key}
+	</select>
+	<select id="selectByBean" parameterType="ParaProperties"
+		resultType="com.joyveb.gens.core.daoalltest.ParaProperties">
+		select * from t_para_properties where key = #{key}
+	</select>
+	
+	<select id="selectByParm" parameterType="string"
+		resultType="com.joyveb.gens.core.daoalltest.ParaProperties">
+		select * from t_para_properties where key = #{key}
+	</select>
+</mapper>
