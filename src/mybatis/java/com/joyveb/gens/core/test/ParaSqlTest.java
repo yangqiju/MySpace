@@ -2,7 +2,6 @@ package com.joyveb.gens.core.test;
 
 import java.util.List;
 
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -28,9 +27,17 @@ public class ParaSqlTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-test.xml");
 		ParaPropertiesMapper paraMapper = (ParaPropertiesMapper)context.getBean("paraPropertiesMapper");
 		ParaPropertiesExample example = new ParaPropertiesExample();
-		example.setStartRow(1);
-		example.setEndRow(10);
-		List<ParaProperties> list =  paraMapper.selectByExample(example);
-		System.out.println(list.size());
+		int size  =  paraMapper.sumByExample(example);
+		int end = 0;
+		for(int i=0;i<3;i++){
+			example.setStartRow(10*i);
+			example.setEndRow(10*(i+1));
+			List<ParaProperties> list = paraMapper.selectByExample(example);
+			System.out.println(size);
+			for(ParaProperties info : list){
+				System.out.println(info.getKey());
+			}
+			System.out.println("********************************************");
+		}
 	}
 }

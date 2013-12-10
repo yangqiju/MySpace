@@ -1,4 +1,4 @@
-package com.joyveb.gens.core.mapper;
+package com.joyveb.gens.core.daoalltest.mapper;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.joyveb.gens.core.domain.CoreLotoValiabl;
+import com.joyveb.gens.core.daoalltest.ParaProperties;
 
 /**
  * Contact Mapper contains all the myBatis/iBatis annotations
@@ -40,7 +40,7 @@ public interface ContactMapper {
 //		@Result(property="phone", column="CONTACT_PHONE"),
 //		@Result(property="email", column="CONTACT_EMAIL")
 //	})
-	List<CoreLotoValiabl> selectAll();
+	List<ParaProperties> selectAll();
 	
 	/**
 	 * Returns a Contact instance from the database.
@@ -54,14 +54,14 @@ public interface ContactMapper {
 		@Result(property="phone", column="CONTACT_PHONE"),
 		@Result(property="email", column="CONTACT_EMAIL")
 	})
-	CoreLotoValiabl selectById(int id);
+	ParaProperties selectById(int id);
 	
 	/**
 	 * Updates an instance of Contact in the database.
 	 * @param contact the instance to be updated.
 	 */
 	@Update(UPDATE)
-	void update(CoreLotoValiabl contact);
+	void update(ParaProperties contact);
 	
 	/**
 	 * Updates an instance of Contact in the database.
@@ -83,5 +83,5 @@ public interface ContactMapper {
 	 */
 	@Insert(INSERT)
 	@Options(useGeneratedKeys = true, keyProperty = "id")
-	void insert(CoreLotoValiabl contact);
+	void insert(ParaProperties contact);
 }

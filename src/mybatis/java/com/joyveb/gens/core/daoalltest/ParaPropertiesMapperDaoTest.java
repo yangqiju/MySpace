@@ -1,9 +1,9 @@
 package com.joyveb.gens.core.daoalltest;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.joyveb.gens.core.daoalltest.mapper.ParaPropertiesMapper;
 
 /**   
  *    
@@ -20,12 +20,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class ParaPropertiesMapperDaoTest {
 
 	public static void main(String[] args) {
-		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext*.xml");
-		MapperService mapperService = (MapperService)context.getBean("mapperService");
-		ParaProperties info = new ParaProperties();
-		info.setKey("yang.test");
-		info.setValue("yang");
-		info.setDes("des");
-		mapperService.insert(info);
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext-common.xml");
+		ParaPropertiesMapper mapperService = (ParaPropertiesMapper)context.getBean(ParaPropertiesMapper.class);
+//		System.out.println(mapperService.select2TableSingle());//3D
+		GameInfo info = mapperService.select2TableBean();
+		System.out.println(info.getCode());
+		System.out.println(info.getName());
 	}
 }

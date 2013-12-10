@@ -10,6 +10,7 @@
 		<plugin type="com.joyveb.mybatis.gens.core.FindByPagePlugin"/>
 		<plugin type="com.joyveb.mybatis.gens.core.PaginationPlugin"/>
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" /> 
+		<plugin type="com.joyveb.mybatis.gens.core.MySqlPaginationPlugin"/>
 		-->
 		<plugin type="com.joyveb.mybatis.gens.core.OracelPaginationPlugin"/>
 		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
@@ -39,7 +40,7 @@
 			targetPackage="com.joyveb.gens.jpa.mapper"
 			targetProject="src/gens/java">
 			<property name="enableSubPackages" value="true" />
-		</javaClientGenerator> -->
+		</javaClientGenerator>  -->
 		
 		<!-- <javaClientGenerator type="XMLMAPPER" targetPackage="com.joyveb.gens.jpa.mapper"  targetProject="src/gens/java">
 	      <property name="enableSubPackages" value="true" />
@@ -50,5 +51,6 @@
 	    </javaClientGenerator> 
 
 		<table tableName="t_para_properties" domainObjectName="ParaProperties"/>
+		<table tableName="t_para_gameinfo" domainObjectName="ParaGameinfo"/>
 	</context>
 </generatorConfiguration>
